@@ -27,12 +27,11 @@ async function run() {
 
     app.get("/users", async (req, res) => {
       try {
-      //  get all users
-        
-      const result = await usersCollection.find({}).toArray();
+        //  get all users
+
+        const result = await usersCollection.find({}).toArray();
 
         res.send(result);
-
       } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
@@ -68,7 +67,7 @@ async function run() {
     app.delete("/user/:id", async (req, res) => {
       try {
         const { id } = req.params;
-        console.log(id)
+        console.log(id);
         const query = { _id: new ObjectId(id) };
         await usersCollection.deleteOne(query);
         res.send("Deleted");
@@ -87,5 +86,5 @@ app.get("/", (req, res) => {
   res.send("Server Running");
 });
 app.listen(port, () => {
-  console.log("PC Builder server listening to port", port);
+  console.log("Server listening to port", port);
 });
